@@ -1,0 +1,15 @@
+{
+  "DOMAIN": {
+    "type": "template",
+    "value": "${DEFAULT_DOMAIN}"
+  },
+  "CERTIFICATE_ARN": {
+    "type": "template",
+    "value": "${DEFAULT_CERTIFICATE_ARN}"
+  },
+  "API_PATH": {
+    "type": "property",
+    "key": "API_PATH",
+    "default": "api"
+  }
+}
