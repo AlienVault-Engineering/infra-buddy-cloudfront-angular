@@ -1,0 +1,26 @@
+[
+  {
+    "ParameterKey": "Environment",
+    "ParameterValue": "${ENVIRONMENT}"
+  },
+  {
+    "ParameterKey": "Application",
+    "ParameterValue": "${APPLICATION}"
+  },
+  {
+    "ParameterKey": "Role",
+    "ParameterValue": "${ROLE}"
+  },
+  {
+    "ParameterKey": "ClusterStack",
+    "ParameterValue": "${CLUSTER_STACK_NAME}"
+  },
+  {
+    "ParameterKey": "ApiPath",
+    "ParameterValue": "${API_PATH}"
+  },
+  {
+    "ParameterKey": "VPCStack",
+    "ParameterValue": "${VPC_STACK_NAME}"
+  }
+]

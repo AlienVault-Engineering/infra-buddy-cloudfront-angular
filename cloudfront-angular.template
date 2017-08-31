@@ -17,8 +17,8 @@
       "Description": "The application",
       "Type": "String"
     },
-    "CertArn": {
-      "Description": "The ARN for the SSL certificate in AWS certificate manager.",
+    "VPCStack": {
+      "Description": "The stack name of the vpc deployed by infra-buddy that will be the target of this cluster.",
       "Type": "String"
     },
     "Domain": {
@@ -115,9 +115,7 @@
             }
           ],
           "ViewerCertificate": {
-            "AcmCertificateArn": {
-              "Ref": "CertArn"
-            },
+            "AcmCertificateArn": { "Fn::ImportValue": {"Fn::Sub": "${VPCStack}-PrimaryCertificate"} },
             "SslSupportMethod": "sni-only",
             "MinimumProtocolVersion": "TLSv1"
           },
@@ -205,7 +203,9 @@
                 ]
               },
               "ViewerProtocolPolicy": "redirect-to-https",
-              "PathPattern": { "Fn::Sub":"${ApiPath}/*"}
+              "PathPattern": {
+                "Fn::Sub": "${ApiPath}/*"
+              }
             }
           ]
         }
