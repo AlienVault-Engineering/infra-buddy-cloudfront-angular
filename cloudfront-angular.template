@@ -21,10 +21,6 @@
       "Description": "The stack name of the vpc deployed by infra-buddy that will be the target of this cluster.",
       "Type": "String"
     },
-    "Domain": {
-      "Description": "The primary domain (should match CertArn)",
-      "Type": "String"
-    },
     "ApiPath": {
       "Description": "The application load balancer path to route api calls.",
       "Type": "String"
@@ -108,14 +104,30 @@
         "DistributionConfig": {
           "Aliases": [
             {
-              "Fn::Sub": "www.${Domain}"
+              "Fn::Join": [
+                "",
+                [
+                  "www.",
+                  {
+                    "Fn::ImportValue": {
+                      "Fn::Sub": "${VPCStack}-PrimaryDomain"
+                    }
+                  }
+                ]
+              ]
             },
             {
-              "Ref": "Domain"
+              "Fn::ImportValue": {
+                "Fn::Sub": "${VPCStack}-PrimaryDomain"
+              }
             }
           ],
           "ViewerCertificate": {
-            "AcmCertificateArn": { "Fn::ImportValue": {"Fn::Sub": "${VPCStack}-PrimaryCertificate"} },
+            "AcmCertificateArn": {
+              "Fn::ImportValue": {
+                "Fn::Sub": "${VPCStack}-PrimaryCertificate"
+              }
+            },
             "SslSupportMethod": "sni-only",
             "MinimumProtocolVersion": "TLSv1"
           },
@@ -215,10 +227,14 @@
       "Type": "AWS::Route53::RecordSet",
       "Properties": {
         "HostedZoneName": {
-          "Ref": "Domain"
+          "Fn::ImportValue": {
+            "Fn::Sub": "${VPCStack}-PrimaryDomain"
+          }
         },
         "Name": {
-          "Ref": "Domain"
+          "Fn::ImportValue": {
+            "Fn::Sub": "${VPCStack}-PrimaryDomain"
+          }
         },
         "Type": "CNAME",
         "TTL": "900",
