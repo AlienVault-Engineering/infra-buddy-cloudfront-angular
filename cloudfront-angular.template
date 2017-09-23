@@ -100,7 +100,9 @@
     },
     "Cloudfront": {
       "Type": "AWS::CloudFront::Distribution",
+      "DependsOn": ["S3Bucket","S3BucketPolicy"],
       "Properties": {
+
         "DistributionConfig": {
           "Aliases": [
             {
