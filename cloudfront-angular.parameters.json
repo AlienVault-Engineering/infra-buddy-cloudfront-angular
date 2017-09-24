@@ -22,5 +22,9 @@
   {
     "ParameterKey": "VPCStack",
     "ParameterValue": "${VPC_STACK_NAME}"
+  },
+  {
+    "ParameterKey": "CertficateArn",
+    "ParameterValue": "${CERTIFICATE_ARN}"
   }
 ]

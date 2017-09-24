@@ -3,5 +3,9 @@
     "type": "property",
     "key": "API_PATH",
     "default": "api"
+  },
+  "CERTIFICATE_ARN": {
+    "type": "property",
+    "key": "CERTIFICATE_ARN"
   }
 }

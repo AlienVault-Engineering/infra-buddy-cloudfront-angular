@@ -24,6 +24,10 @@
     "ApiPath": {
       "Description": "The application load balancer path to route api calls.",
       "Type": "String"
+    },
+    "CertficateArn": {
+      "Description": "The certificate ARN of a cert in the us-east-1 region (Cloudfront limitation).",
+      "Type": "String"
     }
   },
   "Resources": {
@@ -126,9 +130,7 @@
           ],
           "ViewerCertificate": {
             "AcmCertificateArn": {
-              "Fn::ImportValue": {
-                "Fn::Sub": "${VPCStack}-PrimaryCertificate"
-              }
+              "Ref": "CertficateArn"
             },
             "SslSupportMethod": "sni-only",
             "MinimumProtocolVersion": "TLSv1"
