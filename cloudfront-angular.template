@@ -231,9 +231,17 @@
       "Type": "AWS::Route53::RecordSet",
       "Properties": {
         "HostedZoneName": {
-          "Fn::ImportValue": {
-            "Fn::Sub": "${VPCStack}-PrimaryDomain"
-          }
+          "Fn::Join": [
+            "",
+            [
+              {
+                "Fn::ImportValue": {
+                  "Fn::Sub": "${VPCStack}-PrimaryDomain"
+                }
+              },
+              "."
+            ]
+          ]
         },
         "Name": {
           "Fn::ImportValue": {
