@@ -197,7 +197,7 @@
               "PathPattern": "index.html"
             },
             {
-              "TargetOriginId": "proxy",
+              "TargetOriginId": "api",
               "AllowedMethods": [
                 "DELETE",
                 "GET",
