@@ -30,6 +30,16 @@
       "Type": "String"
     }
   },
+  "Conditions": {
+    "Production": {
+      "Fn::Equals": [
+        {
+          "Ref": "Environment"
+        },
+        "prod"
+      ]
+    }
+  },
   "Resources": {
     "S3BucketPolicy": {
       "Type": "AWS::S3::BucketPolicy",
@@ -104,10 +114,6 @@
     },
     "Cloudfront": {
       "Type": "AWS::CloudFront::Distribution",
-      "DependsOn": [
-        "S3Bucket",
-        "S3BucketPolicy"
-      ],
       "Properties": {
         "DistributionConfig": {
           "Aliases": [
@@ -115,7 +121,15 @@
               "Fn::Join": [
                 "",
                 [
-                  "www.",
+                  {
+                    "Fn::If": [
+                      "Production",
+                      "www.",
+                      {
+                        "Fn::Sub": "${Environment}-www."
+                      }
+                    ]
+                  },
                   {
                     "Fn::ImportValue": {
                       "Fn::Sub": "${VPCStack}-PrimaryDomain"
@@ -249,7 +263,15 @@
           "Fn::Join": [
             "",
             [
-              "www.",
+              {
+                "Fn::If": [
+                  "Production",
+                  "www.",
+                  {
+                    "Fn::Sub": "${Environment}-www."
+                  }
+                ]
+              },
               {
                 "Fn::ImportValue": {
                   "Fn::Sub": "${VPCStack}-PrimaryDomain"
