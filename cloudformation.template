@@ -132,7 +132,7 @@
                   },
                   {
                     "Fn::ImportValue": {
-                      "Fn::Sub": "${VPCStack}-PrimaryDomain"
+                      "Fn::Sub": "${VPCStack}-ExternalDomain"
                     }
                   }
                 ]
@@ -140,7 +140,7 @@
             },
             {
               "Fn::ImportValue": {
-                "Fn::Sub": "${VPCStack}-PrimaryDomain"
+                "Fn::Sub": "${VPCStack}-ExternalDomain"
               }
             }
           ],
@@ -252,7 +252,7 @@
             [
               {
                 "Fn::ImportValue": {
-                  "Fn::Sub": "${VPCStack}-PrimaryDomain"
+                  "Fn::Sub": "${VPCStack}-ExternalDomain"
                 }
               },
               "."
@@ -274,7 +274,7 @@
               },
               {
                 "Fn::ImportValue": {
-                  "Fn::Sub": "${VPCStack}-PrimaryDomain"
+                  "Fn::Sub": "${VPCStack}-ExternalDomain"
                 }
               }
             ]
