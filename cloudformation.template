@@ -77,15 +77,7 @@
       "Properties": {
         "AccessControl": "PublicRead",
         "BucketName": {
-          "Fn::Join": [
-            "",
-            [
-              {
-                "Ref": "Environment"
-              },
-              "-www-files"
-            ]
-          ]
+          "Fn::Sub": "${Environment}-${Application}-${Role}-files"
         },
         "WebsiteConfiguration": {
           "IndexDocument": "index.html"
