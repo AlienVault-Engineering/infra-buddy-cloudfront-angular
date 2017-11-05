@@ -184,6 +184,7 @@
             "ForwardedValues": {
               "QueryString": "true"
             },
+            "Compress":true,
             "ViewerProtocolPolicy": "redirect-to-https"
           },
           "CustomErrorResponses": [
