@@ -204,6 +204,7 @@
                   "Forward": "none"
                 }
               },
+              "MaxTTL": 8640,
               "ViewerProtocolPolicy": "redirect-to-https",
               "PathPattern": "index.html"
             },
