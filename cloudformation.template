@@ -181,6 +181,7 @@
               "PUT"
             ],
             "TargetOriginId": "bucket",
+            "MaxTTL": 600,
             "ForwardedValues": {
               "QueryString": "true"
             },
