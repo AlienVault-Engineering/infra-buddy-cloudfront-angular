@@ -207,6 +207,8 @@
                   "Forward": "none"
                 }
               },
+              "MinTTL": 600,
+              "DefaultTTL": 600,
               "MaxTTL": 600,
               "ViewerProtocolPolicy": "redirect-to-https",
               "PathPattern": "index.html"
