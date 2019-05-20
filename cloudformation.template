@@ -44,9 +44,9 @@
         "prod"
       ]
     },
-    "Do_Alias_TLD": {
+    "DoAliasTLD": {
       "Fn::Equals": [
-        {"Ref": "Alias_TLD"},
+        {"Ref": "AliasTLD"},
         "true"
       ]
     }
@@ -143,7 +143,7 @@
             },
             {
               "Fn::If": [
-                "Do_Alias_TLD",
+                "DoAliasTLD",
                 {
                   "Fn::ImportValue": {
                     "Fn::Sub": "${VPCStack}-ExternalDomain"

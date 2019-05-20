@@ -28,7 +28,7 @@
     "ParameterValue": "${CERTIFICATE_ARN}"
   },
   {
-    "ParameterKey": "Alias_TLD",
+    "ParameterKey": "AliasTLD",
     "ParameterValue": "${ALIAS_TLD}"
   }
 ]
