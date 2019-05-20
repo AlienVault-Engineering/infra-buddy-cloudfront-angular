@@ -7,5 +7,10 @@
   "CERTIFICATE_ARN": {
     "type": "property",
     "key": "CERTIFICATE_ARN"
+  },
+  "ALIAS_TLD": {
+    "type": "property",
+    "key": "ALIAS_TLD",
+    "default": "true"
   }
 }

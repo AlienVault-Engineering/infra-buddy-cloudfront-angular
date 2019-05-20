@@ -38,6 +38,12 @@
         },
         "prod"
       ]
+    },
+    "Do_Alias_TLD": {
+      "Fn::Equals": [
+        {"Ref": "Alias_TLD"},
+        "true"
+      ]
     }
   },
   "Resources": {
@@ -131,9 +137,15 @@
               ]
             },
             {
-              "Fn::ImportValue": {
-                "Fn::Sub": "${VPCStack}-ExternalDomain"
-              }
+              "Fn::If": [
+                "Do_Alias_TLD",
+                {
+                  "Fn::ImportValue": {
+                    "Fn::Sub": "${VPCStack}-ExternalDomain"
+                  }
+                },
+                {}
+              ]
             }
           ],
           "ViewerCertificate": {
