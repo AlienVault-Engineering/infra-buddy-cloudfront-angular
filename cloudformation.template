@@ -28,7 +28,12 @@
     "CertficateArn": {
       "Description": "The certificate ARN of a cert in the us-east-1 region (Cloudfront limitation).",
       "Type": "String"
+    },
+    "AliasTLD": {
+      "Description": "Whether to include the top-level-domain of the VPC as an alias for cloudform (true or false)",
+      "Type": "String"
     }
+
   },
   "Conditions": {
     "Production": {
