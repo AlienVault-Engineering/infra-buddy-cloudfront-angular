@@ -260,8 +260,10 @@
       }
     },
     "primarydns": {
-      "Type": "AWS::Route53::RecordSet",
+      "Type": "AWS::Route53::RecordSetGroup",
       "Properties": {
+        "Type": "CNAME",
+        "TTL": "900",
         "HostedZoneName": {
           "Fn::Join": [
             "",
@@ -275,34 +277,47 @@
             ]
           ]
         },
-        "Name": {
-          "Fn::Join": [
-            "",
-            [
-              {
-                "Fn::If": [
-                  "Production",
-                  "www.",
+        "RecordSets": [
+          {
+            "Name": {
+              "Fn::Join": [
+                "",
+                [
                   {
-                    "Fn::Sub": "${Environment}-www."
+                    "Fn::If": [
+                      "Production",
+                      "www.",
+                      {
+                        "Fn::Sub": "${Environment}-www."
+                      }
+                    ]
+                  },
+                  {
+                    "Fn::ImportValue": {
+                      "Fn::Sub": "${VPCStack}-ExternalDomain"
+                    }
                   }
                 ]
-              },
-              {
-                "Fn::ImportValue": {
-                  "Fn::Sub": "${VPCStack}-ExternalDomain"
-                }
-              }
+              ]
+            },
+            "ResourceRecords": [
+              { "Fn::GetAtt": ["Cloudfront", "DomainName"] }
             ]
-          ]
-        },
-        "Type": "CNAME",
-        "TTL": "900",
-        "ResourceRecords": [
+          },
           {
-            "Fn::GetAtt": [
-              "Cloudfront",
-              "DomainName"
+            "Fn::If": [
+              "DoAliasTLD",
+              {
+                "Name": {
+                  "Fn::ImportValue": {
+                    "Fn::Sub": "${VPCStack}-ExternalDomain"
+                  }
+                },
+                "ResourceRecords": [
+                  { "Fn::GetAtt": ["Cloudfront", "DomainName"] }
+                ]
+              },
+              {"Ref": "AWS::NoValue"}
             ]
           }
         ]
