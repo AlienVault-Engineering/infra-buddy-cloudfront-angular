@@ -309,47 +309,6 @@
           }
         ]
       }
-    },
-    "primarydn2": {
-      "Fn::If": [
-        "DoAliasTLD",
-        {
-          "Type": "AWS::Route53::RecordSet",
-          "Properties": {
-            "HostedZoneName": {
-              "Fn::Join": [
-                "",
-                [
-                  {
-                    "Fn::ImportValue": {
-                      "Fn::Sub": "${VPCStack}-ExternalDomain"
-                    }
-                  },
-                  "."
-                ]
-              ]
-            },
-            "Name": {
-              "Fn::ImportValue": {
-                "Fn::Sub": "${VPCStack}-ExternalDomain"
-              }
-            },
-            "Type": "CNAME",
-            "TTL": "900",
-            "ResourceRecords": [
-              {
-                "Fn::GetAtt": [
-                  "Cloudfront",
-                  "DomainName"
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "Ref": "AWS::NoValue"
-        }
-      ]
     }
   },
   "Outputs": {
